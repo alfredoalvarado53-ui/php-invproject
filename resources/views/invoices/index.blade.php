@@ -7,6 +7,7 @@
     <tr>
       <th>{{ __('Dokumento Data') }}</th>
       <th>{{ __('Darbuotojas') }}</th>
+      <th>{{ __('Apmokėta') }}</th>
       <th class="w-1/8 text-right">{{ __('Veiksmai') }}</th>
     </tr>
     @foreach($items as $item)
@@ -14,9 +15,11 @@
     <tr data-tr="{{ __('Sąskaita') }} {{ $item->id }}">
       <td data-th="{{ __('Dokumento Data') }}">{{ $item->document_date }}</td>
       <td data-th="{{ __('Darbuotojas') }}">{{ $item->contrahent_name }}</td>
+      <td data-th="{{ __('Apmokėta') }}">{{ $item->paid ? __('Taip') : __('Ne') }}</td>
       <td data-th="{{ __('Veiksmai') }}">
           @include("partials.actions", [
             'item' => $item,
+            'payRoute' => "invoices.pay",
             'editRoute' => "invoices.edit",
             'showRoute' => "invoices.read",
           ])
