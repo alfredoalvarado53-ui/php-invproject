@@ -75,4 +75,10 @@ class InvoicesService extends BaseService implements BaseServiceInterface
         return redirect()->to($this->redirectStore);
     }
 
+    public function markAsPaid($id): RedirectResponse
+    {
+        $this->repository->update($id, ['paid' => true]);
+        return redirect()->to($this->redirectUpdate);
+    }
+
 }
