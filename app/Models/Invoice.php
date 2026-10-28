@@ -11,9 +11,17 @@ class Invoice extends Model
 
     public $guarded = ["id", "_token", "_method"];
 
+    protected $casts = [
+        'paid' => 'boolean',
+    ];
+
     public function lines()
     {
         return $this->hasMany(InvoiceLine::class);
     }
-}
 
+    public function markAsPaid(): bool
+    {
+        return $this->update(['paid' => true]);
+    }
+}
